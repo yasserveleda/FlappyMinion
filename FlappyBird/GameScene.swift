@@ -213,8 +213,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 bird.physicsBody?.applyImpulse(CGVectorMake(0, 30))
                 
             }
+        
         }else if canRestart {
             self.resetScene()
+            println("Reinicinou")
         }
     }
     
@@ -261,6 +263,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                         }), SKAction.waitForDuration(NSTimeInterval(0.05))]), count:4), SKAction.runBlock({
                             self.canRestart = true
                             })]), withKey: "flash")
+                            println("DEAD")
+                            println("Score: \(score)")
             }
         }
     }
