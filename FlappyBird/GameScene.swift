@@ -253,7 +253,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 bird.physicsBody?.collisionBitMask = worldCategory
                 bird.runAction(  SKAction.rotateByAngle(CGFloat(M_PI) * CGFloat(bird.position.y) * 0.01, duration:1), completion:{self.bird.speed = 0 })
                 
-                
                 // Flash background if contact is detected
                 self.removeActionForKey("flash")
                 self.runAction(SKAction.sequence([SKAction.repeatAction(SKAction.sequence([SKAction.runBlock({
@@ -265,7 +264,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                             })]), withKey: "flash")
                             println("DEAD")
                             println("Score: \(score)")
+                            saveRecord()
             }
         }
+    }
+    
+    func saveRecord(){
+        
+        let highscore = NSUserDefaults.standardUserDefaults().integerForKey("highscore")
+        if score > highscore {
+            
+            NSUserDefaults.standardUserDefaults().setInteger(score, forKey: "highscore")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            println("highscore: "+String("New Highscore: \(score)"))
+        }
+        else {
+                println("highscore: \(highscore)")
+        }
+        
     }
 }
