@@ -287,15 +287,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
     
     func alertScore(){
+        let alert = UIAlertView()
+        
         if score > highscore {
             highscore = score;
-        } 
+            alert.title = "Novo recorde"
+            alert.message = "Seu score: \(score) \nSeu recorde: \(highscore)"
+            alert.addButtonWithTitle("Ok")
+            alert.show()
+            
+        } else {
+            alert.title = "Tente novamente"
+            alert.message = "Seu score: \(score) \nSeu recorde: \(highscore)"
+            alert.addButtonWithTitle("Ok")
+            alert.show()
+        }
         
-        let alert = UIAlertView()
-        alert.title = "Tente novamente"
-        alert.message = "Seu score: \(score) \nSeu recorde: \(highscore)"
-        alert.addButtonWithTitle("Ok")
-        alert.show()
+        
         
         
         
