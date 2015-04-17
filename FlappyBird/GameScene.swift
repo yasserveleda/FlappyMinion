@@ -26,6 +26,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let worldCategory: UInt32 = 1 << 1
     let pipeCategory: UInt32 = 1 << 2
     let scoreCategory: UInt32 = 1 << 3
+    let highscore = NSUserDefaults.standardUserDefaults().integerForKey("highscore")
+    
     
     override func didMoveToView(view: SKView) {
         
@@ -265,13 +267,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                             println("DEAD")
                             println("Score: \(score)")
                             saveRecord()
+                            alertScore()
             }
         }
     }
     
     func saveRecord(){
         
-        let highscore = NSUserDefaults.standardUserDefaults().integerForKey("highscore")
+        
         if score > highscore {
             
             NSUserDefaults.standardUserDefaults().setInteger(score, forKey: "highscore")
@@ -283,4 +286,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
         
     }
+    
+    func alertScore(){
+        
+        let alert = UIAlertView()
+        alert.title = "Tente novamente"
+        alert.message = "Seu score: \(score) \nSeu recorde: \(highscore)"
+        alert.addButtonWithTitle("Ok")
+        alert.show()
+        
+    
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
