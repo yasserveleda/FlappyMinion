@@ -26,8 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     let worldCategory: UInt32 = 1 << 1
     let pipeCategory: UInt32 = 1 << 2
     let scoreCategory: UInt32 = 1 << 3
-    let highscore = NSUserDefaults.standardUserDefaults().integerForKey("highscore")
-    
+    var highscore = NSUserDefaults.standardUserDefaults().integerForKey("highscore")
     
     override func didMoveToView(view: SKView) {
         
@@ -288,6 +287,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
     
     func alertScore(){
+        if score > highscore {
+            highscore = score;
+        } 
         
         let alert = UIAlertView()
         alert.title = "Tente novamente"
@@ -295,9 +297,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         alert.addButtonWithTitle("Ok")
         alert.show()
         
-    
+        
         
     }
+    
     
     
     
