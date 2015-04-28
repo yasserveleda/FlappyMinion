@@ -98,9 +98,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         self.runAction(spawnThenDelayForever)
         
         // setup our bird
-        let birdTexture1 = SKTexture(imageNamed: "minion2")
+        let birdTexture1 = SKTexture(imageNamed: "minionbros")
         birdTexture1.filteringMode = .Nearest
-        let birdTexture2 = SKTexture(imageNamed: "minion2")
+        let birdTexture2 = SKTexture(imageNamed: "minionbros")
         birdTexture2.filteringMode = .Nearest
         
         let anim = SKAction.animateWithTextures([birdTexture1, birdTexture2], timePerFrame: 0.2)
@@ -217,7 +217,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         }else if canRestart {
             self.resetScene()
-            println("Reinicinou")
         }
     }
     
@@ -263,8 +262,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                         }), SKAction.waitForDuration(NSTimeInterval(0.05))]), count:4), SKAction.runBlock({
                             self.canRestart = true
                             })]), withKey: "flash")
-                            println("DEAD")
-                            println("Score: \(score)")
                             saveRecord()
                             alertScore()
             }
@@ -278,10 +275,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             
             NSUserDefaults.standardUserDefaults().setInteger(score, forKey: "highscore")
             NSUserDefaults.standardUserDefaults().synchronize()
-            println("highscore: "+String("New Highscore: \(score)"))
+            
         }
         else {
-                println("highscore: \(highscore)")
+                
         }
         
     }
